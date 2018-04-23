@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Esazykin\LaravelClickHouse;
+namespace Merkeleon\LaravelClickHouse;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\DatabaseManager;
-use Esazykin\LaravelClickHouse\Database\Connection;
-use Esazykin\LaravelClickHouse\Database\Eloquent\Model;
+use Merkeleon\LaravelClickHouse\Database\Connection;
+use Merkeleon\LaravelClickHouse\Database\Eloquent\Model;
 
 class ClickHouseServiceProvider extends ServiceProvider
 {

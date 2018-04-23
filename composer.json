@@ -1,5 +1,5 @@
 {
-  "name": "esazykin/laravel-clickhouse",
+  "name": "merkeleon/laravel-clickhouse",
   "type": "library",
   "license": "MIT",
   "keywords": [
@@ -9,7 +9,7 @@
   ],
   "require": {
     "php": ">=7.1",
-    "laravel/framework": "5.5.*",
+    "laravel/framework": "5.6.*",
     "esazykin/clickhouse-builder": "^1.1"
   },
   "require-dev": {
@@ -19,12 +19,12 @@
   },
   "autoload": {
     "psr-4": {
-      "Esazykin\\LaravelClickHouse\\": "src/"
+      "Merkeleon\\LaravelClickHouse\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Esazykin\\LaravelClickHouse\\Tests\\": "tests/"
+      "Merkeleon\\LaravelClickHouse\\Tests\\": "tests/"
     }
   },
   "scripts": {
