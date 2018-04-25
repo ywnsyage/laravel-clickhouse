@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Merkeleon\LaravelClickHouse;
+namespace Merkeleon\LaravelClickHouse\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\DatabaseManager;

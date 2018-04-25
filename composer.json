@@ -27,6 +27,13 @@
       "Merkeleon\\LaravelClickHouse\\Tests\\": "tests/"
     }
   },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Merkeleon\\LaravelClickHouse\\Providers\\ClickHouseServiceProvider"
+      ]
+    }
+  },
   "scripts": {
     "test": "vendor/bin/phpunit --stop-on-failure tests/"
   }
