@@ -924,6 +924,19 @@ class Builder
     }
 
     /**
+     * Save a new model and return the instance.
+     *
+     * @param  array  $attributes
+     * @return \Illuminate\Database\Eloquent\Model|$this
+     */
+    public function create(array $attributes = [])
+    {
+        return tap($this->newModelInstance($attributes), function ($instance) {
+            $instance->save();
+        });
+    }
+
+    /**
      * Dynamically handle calls into the query instance.
      *
      * @param  string $method

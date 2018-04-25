@@ -131,7 +131,8 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
      */
     protected function bootIfNotBooted()
     {
-        if (!isset(static::$booted[static::class])) {
+        if (!isset(static::$booted[static::class]))
+        {
             static::$booted[static::class] = true;
 
             $this->fireModelEvent('booting', false);
@@ -161,8 +162,10 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
     {
         $class = static::class;
 
-        foreach (class_uses_recursive($class) as $trait) {
-            if (method_exists($class, $method = 'boot'.class_basename($trait))) {
+        foreach (class_uses_recursive($class) as $trait)
+        {
+            if (method_exists($class, $method = 'boot' . class_basename($trait)))
+            {
                 forward_static_call([$class, $method]);
             }
         }
@@ -190,15 +193,19 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
     {
         $totallyGuarded = $this->totallyGuarded();
 
-        foreach ($this->fillableFromArray($attributes) as $key => $value) {
+        foreach ($this->fillableFromArray($attributes) as $key => $value)
+        {
             $key = $this->removeTableFromKey($key);
 
             // The developers may choose to place some attributes in the "fillable" array
             // which means only those attributes may be set through mass assignment to
             // the model, and all others will just get ignored for security reasons.
-            if ($this->isFillable($key)) {
+            if ($this->isFillable($key))
+            {
                 $this->setAttribute($key, $value);
-            } elseif ($totallyGuarded) {
+            }
+            elseif ($totallyGuarded)
+            {
                 throw new MassAssignmentException($key);
             }
         }
@@ -242,7 +249,7 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
         // This method just provides a convenient way for us to generate fresh model
         // instances of this current model. It is particularly useful during the
         // hydration of new objects via the Eloquent query builder instances.
-        $model = new static((array) $attributes);
+        $model = new static((array)$attributes);
 
         $model->exists = $exists;
 
@@ -274,13 +281,120 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
     }
 
     /**
+     * Save the model to the database.
+     *
+     * @param  array $options
+     * @return bool
+     */
+    public function save(array $options = [])
+    {
+        $query = $this->newQueryWithoutScopes();
+
+        // If the "saving" event returns false we'll bail out of the save and return
+        // false, indicating that the save failed. This provides a chance for any
+        // listeners to cancel save operations if validations fail or whatever.
+        if ($this->fireModelEvent('saving') === false)
+        {
+            return false;
+        }
+
+        // If the model already exists in the database we can just update our record
+        // that is already in this database using the current IDs in this "where"
+        // clause to only update this model. Otherwise, we'll just insert them.
+        if ($this->exists)
+        {
+            throw new \Exception('Not supported updates');
+        }
+
+        // If the model is brand new, we'll insert it into our database and set the
+        // ID attribute on the model to the value of the newly inserted row's ID
+        // which is typically an auto-increment value managed by the database.
+        else
+        {
+            $saved = $this->performInsert($query);
+
+            if (!$this->getConnectionName() &&
+                $connection = $query->getConnection())
+            {
+                $this->setConnection($connection->getName());
+            }
+        }
+
+        // If the model is successfully saved, we need to do a few more things once
+        // that is done. We will call the "saved" method here to run any actions
+        // we need to happen after a model gets successfully saved right here.
+        if ($saved)
+        {
+            $this->finishSave($options);
+        }
+
+        return $saved;
+    }
+
+    /**
+     * Perform any actions that are necessary after the model is saved.
+     *
+     * @param  array $options
+     * @return void
+     */
+    protected function finishSave(array $options)
+    {
+        $this->fireModelEvent('saved', false);
+
+        if ($this->isDirty() && ($options['touch'] ?? true))
+        {
+            $this->touchOwners();
+        }
+
+        $this->syncOriginal();
+    }
+
+    /**
+     * Perform a model insert operation.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder $query
+     * @return bool
+     */
+    protected function performInsert(Builder $query)
+    {
+        if ($this->fireModelEvent('creating') === false)
+        {
+            return false;
+        }
+
+        // If the model has an incrementing key, we can use the "insertGetId" method on
+        // the query builder, which will give us back the final inserted ID for this
+        // table from the database. Not all tables have to be incrementing though.
+        $attributes = $this->attributes;
+
+        if (empty($attributes))
+        {
+            return true;
+        }
+
+        $query->insert($attributes);
+
+        // We will go ahead and set the exists property to true, so that it is set when
+        // the created event is fired, just in case the developer tries to update it
+        // during the event. This will allow them to do so and run an update here.
+        $this->exists = true;
+
+        $this->wasRecentlyCreated = true;
+
+        $this->fireModelEvent('created', false);
+
+        return true;
+    }
+
+    /**
      * Get all of the models from the database.
      *
      * @return Collection|static[]
      */
     public static function all()
     {
-        return (new static)->newQuery()->get();
+        return (new static)->newQuery()
+                           ->get();
     }
 
     /**
@@ -291,9 +405,10 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
      */
     public static function with($relations)
     {
-        return (new static)->newQuery()->with(
-            is_string($relations) ? func_get_args() : $relations
-        );
+        return (new static)->newQuery()
+                           ->with(
+                               is_string($relations) ? func_get_args() : $relations
+                           );
     }
 
     public static function query(): Builder
@@ -314,7 +429,7 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
         // builder can easily access any information it may need from the model
         // while it is constructing and executing various queries against it.
         return $builder->setModel($this)
-            ->with($this->with);
+                       ->with($this->with);
     }
 
     public function newQueryWithoutScope()
@@ -368,7 +483,8 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
     {
         $json = json_encode($this->jsonSerialize(), $options);
 
-        if (JSON_ERROR_NONE !== json_last_error()) {
+        if (JSON_ERROR_NONE !== json_last_error())
+        {
             throw JsonEncodingException::forModel($this, json_last_error_msg());
         }
 
@@ -457,7 +573,8 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
      */
     public function getTable(): string
     {
-        if (!isset($this->table)) {
+        if (!isset($this->table))
+        {
             $this->setTable(str_replace(
                 '\\', '', Str::snake(Str::plural(class_basename($this)))
             ));
@@ -509,7 +626,7 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
      */
     public function getQualifiedKeyName(): string
     {
-        return $this->getTable().'.'.$this->getKeyName();
+        return $this->getTable() . '.' . $this->getKeyName();
     }
 
     /**
@@ -552,7 +669,7 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
      */
     public function getForeignKey(): string
     {
-        return Str::snake(class_basename($this)).'_'.$this->primaryKey;
+        return Str::snake(class_basename($this)) . '_' . $this->primaryKey;
     }
 
     /**
@@ -677,7 +794,8 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
      */
     public function __call($method, $parameters)
     {
-        return $this->newQuery()->$method(...$parameters);
+        return $this->newQuery()
+                    ->$method(...$parameters);
     }
 
     /**
