@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Merkeleon\LaravelClickHouse\Database;
+namespace Libern\LaravelClickHouse\Database;
 
 use Tinderbox\ClickhouseBuilder\Query\Grammar;
-use Merkeleon\LaravelClickHouse\Database\Query\Builder;
+use Libern\LaravelClickHouse\Database\Query\Builder;
 
 class Connection extends \Tinderbox\ClickhouseBuilder\Integrations\Laravel\Connection
 {

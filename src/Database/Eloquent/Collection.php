@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Merkeleon\LaravelClickHouse\Database\Eloquent;
+namespace Libern\LaravelClickHouse\Database\Eloquent;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection as SupportCollection;

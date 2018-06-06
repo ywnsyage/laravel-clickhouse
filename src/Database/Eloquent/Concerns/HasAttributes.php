@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Merkeleon\LaravelClickHouse\Database\Eloquent\Concerns;
+namespace Libern\LaravelClickHouse\Database\Eloquent\Concerns;
 
 use Illuminate\Database\Eloquent\Concerns\HasAttributes as BaseHasAttributes;
 
