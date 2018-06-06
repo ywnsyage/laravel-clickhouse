@@ -1,7 +1,7 @@
 {
   "name": "libern/laravel-clickhouse",
   "type": "library",
-  "description": "Clikhouse",
+  "description": "Clickhouse Laravel package",
   "license": "MIT",
   "keywords": [
     "laravel",
