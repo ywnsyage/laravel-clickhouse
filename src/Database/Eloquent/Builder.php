@@ -491,7 +491,7 @@ class Builder
 
         $perPage = $perPage ?: $this->model->getPerPage();
 
-        $results = ($total = $this->toBase()->getCountForPagination())
+        $results = ($total = $this->toBase()->count())
             ? $this->forPage($page, $perPage)->get($columns)
             : $this->model->newCollection();
 
