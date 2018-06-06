@@ -134,6 +134,7 @@ class Builder
         if ($column instanceof Closure) {
             $this->query->where(function (QueryBuilder $queryBuilder) use ($column) {
                 $eloquentBuilder = $this->model->newEloquentBuilder($queryBuilder);
+                $eloquentBuilder->setModel($this->model);
                 $column($eloquentBuilder);
             });
         } else {
