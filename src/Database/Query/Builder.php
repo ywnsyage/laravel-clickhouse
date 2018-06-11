@@ -63,9 +63,9 @@ class Builder extends BaseBuilder
         $builder = $this->getCountQuery($column);
         $result = $builder->get();
 
-        if (count($this->groups) > 0) {
-            return count($result);
-        }
+//        if (count($this->groups) > 0) {
+//            return count($result);
+//        }
 
         return (int) ($result[0]['count'] ?? 0);
     }
