@@ -17,7 +17,8 @@ use Illuminate\Database\Eloquent\JsonEncodingException;
 use Illuminate\Database\Eloquent\MassAssignmentException;
 use Illuminate\Database\Eloquent\Concerns\HidesAttributes;
 use Illuminate\Database\Eloquent\Concerns\GuardsAttributes;
-use Illuminate\Database\Eloquent\Concerns\HasRelationships;
+//use Illuminate\Database\Eloquent\Concerns\HasRelationships;
+use Libern\LaravelClickHouse\Database\Eloquent\Concerns\HasRelationships;
 use Illuminate\Database\ConnectionResolverInterface as Resolver;
 use Libern\LaravelClickHouse\Database\Query\Builder as QueryBuilder;
 
