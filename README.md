@@ -8,7 +8,7 @@ Eloquent model for ClickHouse
 
 ## Installation
 ```sh
-$ composer require libern/laravel-clickhouse
+$ composer require ywnsyage/laravel-clickhouse
 ```
 
 Then add the code above into your config/app.php file providers section
