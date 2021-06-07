@@ -1,5 +1,5 @@
 {
-  "name": "libern/laravel-clickhouse",
+  "name": "ywnsyage/laravel-clickhouse",
   "type": "library",
   "description": "Clickhouse Laravel package",
   "license": "MIT",
