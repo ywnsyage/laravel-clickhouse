@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Libern\LaravelClickHouse\Database\Eloquent\Concerns;
+namespace Ywnsyage\LaravelClickHouse\Database\Eloquent\Concerns;
 
 use LogicException;
 use Illuminate\Database\Eloquent\Relations\Relation as BaseRelation;
-use Libern\LaravelClickHouse\Database\Eloquent\Relations\Relation;
+use Ywnsyage\LaravelClickHouse\Database\Eloquent\Relations\Relation;
 use Illuminate\Database\Eloquent\Concerns\HasAttributes as BaseHasAttributes;
 
 trait HasAttributes

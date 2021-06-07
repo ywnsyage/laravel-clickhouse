@@ -13,7 +13,7 @@ $ composer require ywnsyage/laravel-clickhouse
 
 Then add the code above into your config/app.php file providers section
 ```php
-Libern\LaravelClickHouse\ClickHouseServiceProvider::class,
+Ywnsyage\LaravelClickHouse\ClickHouseServiceProvider::class,
 ```
 And add new connection into your config/database.php file. Something like this:
 ```php
@@ -69,7 +69,7 @@ Then create model
 ```php
 <?php
 
-use Libern\LaravelClickHouse\Database\Eloquent\Model;
+use Ywnsyage\LaravelClickHouse\Database\Eloquent\Model;
 
 class Payment extends Model
 {

@@ -6,9 +6,9 @@ namespace Esazykin\LaravelClickHouse\Tests\Unit\Database\Query;
 
 use PHPUnit\Framework\TestCase;
 use Esazykin\LaravelClickHouse\Tests\Helpers;
-use Tinderbox\ClickhouseBuilder\Query\Grammar;
+use Ywnsyage\ClickhouseBuilder\Query\Grammar;
 use Esazykin\LaravelClickHouse\Database\Connection;
-use Tinderbox\ClickhouseBuilder\Query\Enums\Format;
+use Ywnsyage\ClickhouseBuilder\Query\Enums\Format;
 use Esazykin\LaravelClickHouse\Database\Query\Builder;
 
 /**

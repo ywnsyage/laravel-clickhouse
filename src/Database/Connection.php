@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Libern\LaravelClickHouse\Database;
+namespace Ywnsyage\LaravelClickHouse\Database;
 
-use Tinderbox\ClickhouseBuilder\Query\Grammar;
-use Libern\LaravelClickHouse\Database\Query\Builder;
+use Ywnsyage\ClickhouseBuilder\Query\Grammar;
+use Ywnsyage\LaravelClickHouse\Database\Query\Builder;
 
-class Connection extends \Tinderbox\ClickhouseBuilder\Integrations\Laravel\Connection
+class Connection extends \Ywnsyage\ClickhouseBuilder\Integrations\Laravel\Connection
 {
     public function query()
     {

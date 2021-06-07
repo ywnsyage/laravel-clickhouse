@@ -1,13 +1,13 @@
 <?php
 
-namespace Libern\LaravelClickHouse\Database\Eloquent\Relations;
+namespace Ywnsyage\LaravelClickHouse\Database\Eloquent\Relations;
 
 
 //use Illuminate\Database\Eloquent\Model;
-use Libern\LaravelClickHouse\Database\Eloquent\Model;
+use Ywnsyage\LaravelClickHouse\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
 //use Illuminate\Database\Eloquent\Relations\Concerns\SupportsDefaultModels;
-use Libern\LaravelClickHouse\Database\Eloquent\Relations\Concerns\SupportsDefaultModels;
+use Ywnsyage\LaravelClickHouse\Database\Eloquent\Relations\Concerns\SupportsDefaultModels;
 //use Illuminate\Database\Eloquent\Relations\HasOneOrMany;
 
 class HasOne extends HasOneOrMany

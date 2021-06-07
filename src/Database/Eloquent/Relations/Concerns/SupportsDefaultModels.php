@@ -1,10 +1,10 @@
 <?php
 
-namespace Libern\LaravelClickHouse\Database\Eloquent\Relations\Concerns;
+namespace Ywnsyage\LaravelClickHouse\Database\Eloquent\Relations\Concerns;
 
 
 //use Illuminate\Database\Eloquent\Model;
-use Libern\LaravelClickHouse\Database\Eloquent\Model;
+use Ywnsyage\LaravelClickHouse\Database\Eloquent\Model;
 
 trait SupportsDefaultModels
 {

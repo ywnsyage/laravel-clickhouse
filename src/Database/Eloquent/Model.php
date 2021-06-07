@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Libern\LaravelClickHouse\Database\Eloquent;
+namespace Ywnsyage\LaravelClickHouse\Database\Eloquent;
 
 use ArrayAccess;
 use JsonSerializable;
 use Illuminate\Support\Str;
 use Illuminate\Contracts\Support\Jsonable;
 use Illuminate\Contracts\Support\Arrayable;
-use Tinderbox\ClickhouseBuilder\Query\Grammar;
-use Libern\LaravelClickHouse\Database\Connection;
+use Ywnsyage\ClickhouseBuilder\Query\Grammar;
+use Ywnsyage\LaravelClickHouse\Database\Connection;
 use Illuminate\Database\ConnectionResolverInterface;
 use Illuminate\Database\Eloquent\Concerns\HasEvents;
 use Illuminate\Database\Eloquent\JsonEncodingException;
@@ -18,9 +18,9 @@ use Illuminate\Database\Eloquent\MassAssignmentException;
 use Illuminate\Database\Eloquent\Concerns\HidesAttributes;
 use Illuminate\Database\Eloquent\Concerns\GuardsAttributes;
 //use Illuminate\Database\Eloquent\Concerns\HasRelationships;
-use Libern\LaravelClickHouse\Database\Eloquent\Concerns\HasRelationships;
+use Ywnsyage\LaravelClickHouse\Database\Eloquent\Concerns\HasRelationships;
 use Illuminate\Database\ConnectionResolverInterface as Resolver;
-use Libern\LaravelClickHouse\Database\Query\Builder as QueryBuilder;
+use Ywnsyage\LaravelClickHouse\Database\Query\Builder as QueryBuilder;
 
 /**
  * @mixin \Eloquent

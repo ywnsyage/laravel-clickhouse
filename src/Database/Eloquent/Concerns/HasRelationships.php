@@ -1,14 +1,14 @@
 <?php
 
-namespace Libern\LaravelClickHouse\Database\Eloquent\Concerns;
+namespace Ywnsyage\LaravelClickHouse\Database\Eloquent\Concerns;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use Libern\LaravelClickHouse\Database\Eloquent\Model;
+use Ywnsyage\LaravelClickHouse\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 //use Illuminate\Database\Eloquent\Relations\HasOne;
-use Libern\LaravelClickHouse\Database\Eloquent\Relations\HasOne;
+use Ywnsyage\LaravelClickHouse\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
